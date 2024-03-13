@@ -1,30 +1,23 @@
 import React from "react";
 
-import { FaTrashAlt } from "react-icons/fa";
+import LineItem from "./LineItem";
+
+// bryt ut <li> elementet till LineItem.jsx
+// byt ut <li> innuti vår map till <LineItem />
+// Skicka med items, handleCheck och handleDelete som props
+// Destructa dem i LineItem
+// Flytta import av ikon till LineItem
 
 const ItemList = ({ items, handleCheck, handleDelete }) => {
   return (
     <ul>
       {items.map((item) => (
-        <li className="item" key={item.id}>
-          <input
-            type="checkbox"
-            onChange={() => handleCheck(item.id)}
-            checked={item.checked}
-          />
-          <label
-            onDoubleClick={() => handleCheck(item.id)}
-            style={item.checked ? { textDecoration: "line-through" } : null}
-          >
-            {item.item}
-          </label>
-          <FaTrashAlt
-            onClick={() => handleDelete(item.id)}
-            role="button"
-            tabIndex="0"
-            aria-label="delete item"
-          />
-        </li>
+        <LineItem
+          key={item.id}
+          item={item}
+          handleCheck={handleCheck}
+          handleDelete={handleDelete}
+        />
       ))}
     </ul>
   );
